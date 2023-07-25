@@ -1,19 +1,22 @@
 package Lessons;
 
-public class Animal {
-    protected String nameAnimal;
-    protected String nameOwner;
+public abstract class Animal implements Illable {
+    protected String name;
+    protected String owner;
     protected String diagnosis;
     protected boolean isVaccinated;
     protected final String TYPE = getClass().getSimpleName();
 
-    public Animal(String nameAnimal, String nameOwner, String diagnosis, boolean isVaccinated) {
-        this.nameAnimal = nameAnimal;
-        this.nameOwner = nameOwner;
+    public Animal(String name, String owner, String diagnosis, boolean isVaccinated) {
+        this.name = name;
+        this.owner = owner;
         this.diagnosis = diagnosis;
         this.isVaccinated = isVaccinated;
     }
-    public Animal() {}
+
+    public Animal(String name, String owner) {
+        this(name, owner, null, false);
+    }
 
     public void setVaccinated(boolean vaccinated) {
         isVaccinated = vaccinated;
@@ -27,26 +30,19 @@ public class Animal {
         return TYPE;
     }
 
-    protected void toGo() {
-        System.out.println("Я бегу");
-    }
-
-    protected void fly() {
-        System.out.println("Я лечу");
-    }
-
-    protected void swim() {
-        System.out.println("Я плыву");
-    }
-
 
     @Override
     public String toString() {
         return "Animal{" +
-                "nameAnimal='" + nameAnimal + '\'' +
-                ", nameOwner='" + nameOwner + '\'' +
+                "name='" + name + '\'' +
+                ", owner='" + owner + '\'' +
                 ", diagnosis='" + diagnosis + '\'' +
                 ", isVaccinated=" + isVaccinated +
                 '}';
+    }
+
+    @Override
+    public void ill() {
+        System.out.println("Животное болеет");
     }
 }

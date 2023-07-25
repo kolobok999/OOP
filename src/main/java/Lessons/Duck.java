@@ -1,26 +1,32 @@
 package Lessons;
 
-public class Duck extends Animal {
-    private int wingLength;
-
-    public Duck(String nameAnimal, String nameOwner, String diagnosis, boolean isVaccinated, int wingLength) {
-        super(nameAnimal, nameOwner, diagnosis, isVaccinated);
-        this.wingLength = wingLength;
+public class Duck extends Animal implements Flyable, Speakable {
+    public Duck(String name, String owner, String diagnosis, boolean isVaccinated) {
+        super(name, owner, diagnosis, isVaccinated);
     }
 
-    @Override
-    protected void toGo() {
-        System.out.println("Я хожу");
+    public Duck(String name, String owner) {
+        super(name, owner);
     }
+
 
     @Override
     public String toString() {
         return "Duck{" +
-                "nameAnimal='" + nameAnimal + '\'' +
-                ", nameOwner='" + nameOwner + '\'' +
+                "name='" + name + '\'' +
+                ", owner='" + owner + '\'' +
                 ", diagnosis='" + diagnosis + '\'' +
                 ", isVaccinated=" + isVaccinated + '\'' +
-                ", wingLength=" + wingLength +
                 '}';
+    }
+
+    @Override
+    public void fly(int speed) {
+        System.out.printf("Я лечу со скоростью %d", speed);
+    }
+
+    @Override
+    public void speak() {
+        System.out.println("КРЯ");
     }
 }

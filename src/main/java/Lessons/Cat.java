@@ -1,35 +1,33 @@
 package Lessons;
 
-public class Cat extends Animal {
-    private int countPaws;
+public class Cat extends Animal implements Speakable, Runnable {
 
     public Cat() {
-        this("Max", null, null, false, 4 );
+        this("Max", null, null, false );
     }
 
-    public Cat(String nameAnimal, String nameOwner, String diagnosis, boolean isVaccinated, int countPaws) {
-        super(nameAnimal, nameOwner, diagnosis, isVaccinated);
-        this.countPaws = countPaws;
-    }
-
-    @Override
-    protected void fly() {
-        System.out.println("Я не умею летать, я кот");
-    }
-
-    @Override
-    protected void swim() {
-        System.out.println("Мяу, я не хочу");
+    public Cat(String name, String owner, String diagnosis, boolean isVaccinated) {
+        super(name, owner, diagnosis, isVaccinated);
     }
 
     @Override
     public String toString() {
         return "Cat{" +
-                "nameAnimal='" + nameAnimal + '\'' +
-                ", nameOwner='" + nameOwner + '\'' +
+                "name='" + name + '\'' +
+                ", owner='" + owner + '\'' +
                 ", diagnosis='" + diagnosis + '\'' +
                 ", isVaccinated=" + isVaccinated +
-                ", countPaws=" + countPaws +
                 '}';
     }
+
+    @Override
+    public void run(int speed) {
+        System.out.printf("Я бегу со скоростью %d", speed);
+    }
+
+    @Override
+    public void speak() {
+        System.out.println("МЯУ");
+    }
+
 }

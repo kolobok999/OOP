@@ -2,29 +2,40 @@ package Lessons;
 
 public class Main {
     public static void main(String[] args) {
-        Animal barsik = new Cat("Барсик", "Максим", "Простуда", false, 4);
+        Animal cat = new Cat("Барсик", "Максим", "Простуда", false);
         Animal dog = new Dog("Reks", "Egor", null, false);
-        Animal duck = new Duck("Donald", "Olga", null, false, 30);
-        Animal sparrow = new Sparrow("Neo", "Petr", null, true,10);
-        System.out.println(barsik);
-        barsik.fly();
-        barsik.toGo();
-        barsik.swim();
+        Animal duck = new Duck("Donald", "Olga", null, false);
+        Animal sparrow = new Sparrow("Neo", "Petr", null, true);
+        Fish fish = new Fish("Nemo", "Jack");
 
-        System.out.println(dog);
-        dog.toGo();
-        dog.fly();
-        dog.swim();
+        VetClinic clinic = new VetClinic();
+        clinic.addNewAnimal(cat).addNewAnimal(dog).addNewAnimal(duck).addNewAnimal(sparrow).addNewAnimal(fish);
+        Nurse nurse = new Nurse("Elizabeth");
+        Doctor doctor = new Doctor("James", nurse);
 
-        System.out.println(duck);
-        duck.toGo();
-        duck.fly();
-        duck.swim();
+        printAnimalStatus(clinic);
 
-        System.out.println(sparrow);
-        sparrow.toGo();
-        sparrow.fly();
-        sparrow.swim();
+        medExam(clinic, doctor);
+        System.out.println("--------------------------");
+
+        printAnimalStatus(clinic);
+
 
     }
+
+    private static void medExam(VetClinic clinic, Doctor doctor) {
+        for (Animal animal : clinic.getAnimals()) {
+            doctor.doMedicalExamination(animal);
+        }
+    }
+
+    private static void printAnimalStatus(VetClinic clinic) {
+        for (Animal animal : clinic.getAnimals()) {
+            if (animal.isVaccinated) {
+                System.out.printf("Животное %s вакцинировано\n", animal.name);
+            } else System.out.printf("Животное %s не вакцинировано\n", animal.name);
+        }
+    }
+
+
 }
